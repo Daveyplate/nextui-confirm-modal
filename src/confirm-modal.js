@@ -13,7 +13,14 @@ import {
  * NextUI Confirm Modal.
  * @param {Object} props - React component props.
  * @param {Object} props.confirm - Confirm object.
- * @param {function} props.setConfirm - Set confirm function.
+ * @param {string} [props.confirm.title] - Modal title.
+ * @param {string} [props.confirm.content] - Modal content.
+ * @param {string} [props.confirm.color] - Confirm button color.
+ * @param {string} [props.confirm.label] - Confirm button label.
+ * @param {string} [props.confirm.cancelLabel] - Cancel button label.
+ * @param {string} [props.confirm.icon] - Confirm button icon.
+ * @param {function} props.confirm.action - Gets called on confirm..
+ * @param {function} props.setConfirm - Required to close the modal.
  * @returns {JSX.Element}
  */
 export function ConfirmModal({ confirm, setConfirm }) {
@@ -41,7 +48,7 @@ export function ConfirmModal({ confirm, setConfirm }) {
 
                         <ModalFooter>
                             <Button size="lg" variant="light" onPress={onClose}>
-                                Cancel
+                                {confirm?.cancelLabel || "Cancel"}
                             </Button>
 
                             <Button
@@ -49,7 +56,7 @@ export function ConfirmModal({ confirm, setConfirm }) {
                                 color={confirm?.color}
                                 onPress={async () => {
                                     setIsConfirming(true)
-                                    await confirm?.action()
+                                    if (confirm?.action) await confirm?.action()
                                     onClose()
                                     setIsConfirming(false)
                                 }}
