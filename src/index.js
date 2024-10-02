@@ -1,1 +1,1 @@
-export * from './test-module'
+export * from './confirm-modal'

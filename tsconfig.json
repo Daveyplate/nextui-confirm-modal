@@ -7,7 +7,7 @@
         "skipLibCheck": true,
         "declaration": true,
         "emitDeclarationOnly": true,
-        "outDir": "src/@types",
+        "outDir": "dist",
         "lib": [
             "ES6"
         ]

@@ -1,21 +1,37 @@
 {
-  "name": "@leakeddave/my-test-package",
-  "homepage": "https://github.com/LeakedDave/my-test-package",
-  "version": "1.0.3",
-  "description": "",
-  "main": "src/index",
-  "types": "src/@types/index",
+  "name": "@daveyplate/nextui-confirm-modal",
+  "homepage": "https://github.com/daveyplate/nextui-confirm-modal",
+  "version": "1.0.0",
+  "description": "A simple confirm modal for NextUI",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
-    "build": "npx tsc",
+    "build": "babel src --out-dir dist && npx tsc",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "NextUI",
+    "React",
+    "Modal",
+    "Confirm"
+  ],
+  "author": "LeakedDave",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "babel-plugin-jsdoc": "^0.1.4",
     "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@nextui-org/react": "^2.4.8",
+    "framer-motion": "^11.9.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
