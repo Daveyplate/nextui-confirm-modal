@@ -1,7 +1,7 @@
 {
   "name": "@daveyplate/nextui-confirm-modal",
   "homepage": "https://github.com/daveyplate/nextui-confirm-modal",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple confirm modal for NextUI",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
