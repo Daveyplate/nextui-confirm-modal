@@ -18,7 +18,7 @@
     "Modal",
     "Confirm"
   ],
-  "author": "LeakedDave",
+  "author": "daveycodez",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.25.6",

@@ -29,14 +29,13 @@ export function ConfirmModal({ confirm, setConfirm }) {
     return (
         <Modal
             isOpen={!!confirm && !confirm.isClosed}
-            classNames={{ closeButton: "text-xl" }}
             onOpenChange={(isOpen) => setConfirm({ ...confirm, isClosed: !isOpen })}
             placement="center"
         >
             <ModalContent>
                 {(onClose) => (
                     <>
-                        <ModalHeader className="flex flex-col gap-1">
+                        <ModalHeader>
                             {confirm?.title || "Confirm"}
                         </ModalHeader>
 
@@ -47,12 +46,11 @@ export function ConfirmModal({ confirm, setConfirm }) {
                         </ModalBody>
 
                         <ModalFooter>
-                            <Button size="lg" variant="light" onPress={onClose}>
+                            <Button variant="light" onPress={onClose}>
                                 {confirm?.cancelLabel || "Cancel"}
                             </Button>
 
                             <Button
-                                size="lg"
                                 color={confirm?.color}
                                 onPress={async () => {
                                     setIsConfirming(true)
