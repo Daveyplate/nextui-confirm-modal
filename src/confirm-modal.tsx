@@ -1,29 +1,30 @@
-import React, { useState } from "react"
-import { Button, Spinner } from "@nextui-org/react"
-
+import { ReactNode, useState } from "react"
+import { Button, ModalProps, Spinner } from "@nextui-org/react"
 import {
     Modal,
     ModalContent,
     ModalHeader,
     ModalBody,
     ModalFooter,
-} from '@nextui-org/react'
+} from "@nextui-org/react"
 
-/**
- * NextUI Confirm Modal.
- * @param {Object} props - React component props.
- * @param {Object} props.confirm - Confirm object.
- * @param {string} [props.confirm.title] - Modal title.
- * @param {string} [props.confirm.content] - Modal content.
- * @param {string} [props.confirm.color] - Confirm button color.
- * @param {string} [props.confirm.label] - Confirm button label.
- * @param {string} [props.confirm.cancelLabel] - Cancel button label.
- * @param {string} [props.confirm.icon] - Confirm button icon.
- * @param {function} props.confirm.action - Gets called on confirm..
- * @param {function} props.setConfirm - Required to close the modal.
- * @returns {JSX.Element}
- */
-export function ConfirmModal({ confirm, setConfirm }) {
+interface ConfirmProps {
+    title?: string
+    content?: string
+    color?: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined
+    label?: string
+    cancelLabel?: string
+    icon?: ReactNode
+    action?: () => Promise<void>
+    isClosed?: boolean
+}
+
+interface ConfirmModalProps {
+    confirm: ConfirmProps
+    setConfirm: (confirm: ConfirmProps) => void
+}
+
+export function ConfirmModal({ confirm, setConfirm, ...props }: ConfirmModalProps & ModalProps) {
     const [isConfirming, setIsConfirming] = useState(false)
 
     return (
@@ -31,6 +32,7 @@ export function ConfirmModal({ confirm, setConfirm }) {
             isOpen={!!confirm && !confirm.isClosed}
             onOpenChange={(isOpen) => setConfirm({ ...confirm, isClosed: !isOpen })}
             placement="center"
+            {...props}
         >
             <ModalContent>
                 {(onClose) => (
@@ -54,7 +56,7 @@ export function ConfirmModal({ confirm, setConfirm }) {
                                 color={confirm?.color}
                                 onPress={async () => {
                                     setIsConfirming(true)
-                                    if (confirm?.action) await confirm?.action()
+                                    if (confirm?.action) await confirm.action()
                                     onClose()
                                     setIsConfirming(false)
                                 }}
