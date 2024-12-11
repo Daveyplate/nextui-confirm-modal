@@ -8,23 +8,24 @@ import {
     ModalFooter,
 } from "@nextui-org/react"
 
-interface ConfirmProps {
-    title?: string
-    content?: string
-    color?: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined
-    label?: string
-    cancelLabel?: string
-    icon?: ReactNode
-    action?: () => Promise<void>
-    isClosed?: boolean
+export interface Confirm {
+    title?: string | null
+    content?: string | null
+    color?: "default" | "primary" | "secondary" | "success" | "warning" | "danger"
+    label?: string | null
+    cancelLabel?: string | null
+    icon?: ReactNode | null
+    action?: () => Promise<void> | null
+    isClosed?: boolean | null
 }
 
-interface ConfirmModalProps {
-    confirm: ConfirmProps
-    setConfirm: (confirm: ConfirmProps) => void
+interface ConfirmModalProps extends Omit<ModalProps, "children"> {
+    confirm?: Confirm | null
+    setConfirm: (confirm: Confirm | null) => void
 }
 
-export function ConfirmModal({ confirm, setConfirm, ...props }: ConfirmModalProps & ModalProps) {
+export function ConfirmModal(
+    { confirm, setConfirm, ...props }: ConfirmModalProps) {
     const [isConfirming, setIsConfirming] = useState(false)
 
     return (
